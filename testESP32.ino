@@ -69,7 +69,7 @@ void setup() {
 
   // Initialize ADS1115 ADC module
     if (!ads.begin(ADS1115_ADDRESS)) {                        
-    Serial.println("Failed to initialize ADS.");             // check if the led stays on, wile will cause to be in if indefinitely?
+    Serial.println("Failed to initialize ADS.");            
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print(" ADS Failed!");
@@ -115,7 +115,7 @@ void setup() {
   Serial.println("created file ");
   Serial.print(fileName);
   delay(100);                                                    
-  dataFile.println("Sl.No.,Time,Resistance(ohm)");  
+  dataFile.println("Sl.No.,Time,Resistance(ohm)");  //not being print into sd . check 
   dataFile.flush();                         
   dataFile.close();
 
@@ -137,7 +137,7 @@ void loop() {
   
   // Read voltage from ADS1115 // pending to set gain 
   int16_t adc0 = ads.readADC_SingleEnded(0);
-  float voltage = ads.computeVolts(adc0);  // Convert ADC value to voltage
+  float voltage = ads.computeVolts(adc0);  
   float resistance = getresistance(voltage);
 
   // Get current date and time from RTC module
@@ -186,7 +186,7 @@ if(n==0){
    digitalWrite(Buzz, HIGH);
    delay(250);
  }
-  dataFile = SD.open(getFileName(), FILE_WRITE);             //check 
+  dataFile = SD.open(getFileName(), FILE_WRITE);            
   if (dataFile /*&& limitswitch==HIGH*/) {
     if(temp!=n){
      dataFile.println(mode1);}
@@ -214,7 +214,7 @@ if(n==1){
    digitalWrite(Buzz, HIGH);
    delay(250);
  }
-  dataFile = SD.open(getFileName(), FILE_WRITE);             //check 
+  dataFile = SD.open(getFileName(), FILE_WRITE);              
   if (dataFile /*&& limitswitch==HIGH*/) {
     if(temp!=n){
      dataFile.println(mode2);}
